@@ -25,9 +25,9 @@ public class RoutineCalculatorTest {
 
   @Test
   void displaysReadAndStudyDoExerciseBetween0700And0759() {
-    RoutineCalculator routineCalculator = new RoutineCalculator(timeService);
     Instant sevenThirtyAm = Instant.ofEpochSecond(0).atZone(ZoneId.of("Europe/Madrid")).withHour(7).withMinute(30).toInstant();
     timeService.setTime(sevenThirtyAm);
+    RoutineCalculator routineCalculator = new RoutineCalculator(timeService);
 
     String result = routineCalculator.whatShouldIDoNow();
 
@@ -36,9 +36,9 @@ public class RoutineCalculatorTest {
 
   @Test
   void displaysReadAndStudyDoExerciseBetween0800And0859() {
-    RoutineCalculator routineCalculator = new RoutineCalculator(timeService);
     Instant eightThirtyAm = Instant.ofEpochSecond(0).atZone(ZoneId.of("Europe/Madrid")).withHour(8).withMinute(30).toInstant();
     timeService.setTime(eightThirtyAm);
+    RoutineCalculator routineCalculator = new RoutineCalculator(timeService);
 
     String result = routineCalculator.whatShouldIDoNow();
 
