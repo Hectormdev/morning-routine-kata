@@ -4,7 +4,7 @@
     <module name="kata-setup-java.main" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="org.example.*" />
+        <option name="PATTERN" value="org.example.time.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
