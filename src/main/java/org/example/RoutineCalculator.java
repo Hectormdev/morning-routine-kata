@@ -1,10 +1,6 @@
 package org.example;
 
 import java.time.Instant;
-import java.time.temporal.ChronoField;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalField;
-import java.time.temporal.ValueRange;
 import java.util.List;
 
 import org.example.time.InstantRange;
@@ -18,19 +14,20 @@ public class RoutineCalculator implements MorningRoutine {
 
   public RoutineCalculator(TimeService timeService) {
     this.timeService = timeService;
-    this.routine = setUpRoutine(timeService.now());
+    this.routine = setUpRoutine();
   }
 
-  private List<Event> setUpRoutine(Instant now) {
-    Instant sixAm = now.atZone(timeService.getZone()).withHour(6).truncatedTo(ChronoUnit.HOURS).toInstant();
-    Instant sevenAm = now.atZone(timeService.getZone()).withHour(7).truncatedTo(ChronoUnit.HOURS).toInstant();
-    Instant nineAm = now.atZone(timeService.getZone()).withHour(9).truncatedTo(ChronoUnit.HOURS).toInstant();
-    Instant eightAm = now.atZone(timeService.getZone()).withHour(8).truncatedTo(ChronoUnit.HOURS).toInstant();
+  private List<Event> setUpRoutine() {
+    Instant sixAm = timeService.at(6, 0);
+    Instant sevenAm = timeService.at(7, 0);
+    Instant nineAm = timeService.at(9, 0);
+    Instant eightAm = timeService.at(8, 0);
+
     Event doExercise = new Event(new InstantRange(sixAm, sevenAm), "Do exercise");
     Event readAndStudy = new Event(new InstantRange(sevenAm, eightAm), "Read and study");
     Event haveBreakfast = new Event(new InstantRange(eightAm, nineAm), "Have breakfast");
-    List<Event> agenda = List.of(doExercise, readAndStudy, haveBreakfast);
-    return agenda;
+
+    return List.of(doExercise, readAndStudy, haveBreakfast);
   }
 
   @Override
